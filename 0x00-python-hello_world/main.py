@@ -18,4 +18,3 @@ guillaume@ubuntu:~/py/0x00$ od -t x1 main.pyc # SYSTEM DEPENDANT => CAN BE DIFFE
 0000140 6d 61 69 6e 2e 70 79 da 08 3c 6d 6f 64 75 6c 65
 0000160 3e 02 00 00 00 73 00 00 00 00
 0000172
-
