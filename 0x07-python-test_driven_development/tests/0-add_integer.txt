@@ -1,0 +1,79 @@
+>>> add_integer = __import__('0-add_integer').add_integer
+
+# Test with integers
+>>> add_integer(10, 2)
+12
+
+# Test with floats, should convert to integers
+>>> add_integer(100.5, 100.5)
+200
+
+# Test with a float and an int
+>>> add_integer(100, 100.5)
+200
+
+# Test with default parameter (b default is 98)
+>>> add_integer(100)
+198
+
+# Test with negative numbers
+>>> add_integer(-10, -20)
+-30
+
+# Test with a negative and a positive number
+>>> add_integer(-10, 20)
+10
+
+# Test for type error with string in the first parameter
+>>> add_integer("Holberton", 3)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+# Test for type error with string in the second parameter
+>>> add_integer(3, "Holberton")
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+
+# Test for type error with None as the first parameter
+>>> add_integer(None, 10)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+# Test for type error with None as the second parameter
+>>> add_integer(10, None)
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+
+# Test for type error with only one string parameter
+>>> add_integer("Holberton")
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+# Test for type error with a list as the first parameter
+>>> add_integer([1, 2, 3], 2)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+# Test for type error with a list as the second parameter
+>>> add_integer(2, [1, 2, 3])
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+
+# Test for type error with a dictionary as the first parameter
+>>> add_integer({"a": 1, "b": 2}, 2)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+# Test for type error with a dictionary as the second parameter
+>>> add_integer(2, {"a": 1, "b": 2})
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
