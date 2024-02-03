@@ -1,0 +1,19 @@
+>>> text_indentation(12)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+>>> text_indentation("Lorem ipsum. Dolor sit amet? Consectetur: adipiscing!")
+Lorem ipsum.$
+$
+Dolor sit amet?$
+$
+Consectetur:$
+$
+adipiscing!
+>>> text_indentation("Lorem ipsum dolor sit amet. consectetur: adipiscing elit?")
+Lorem ipsum dolor sit amet.$
+$
+consectetur:$
+$
+adipiscing elit?$
+$
