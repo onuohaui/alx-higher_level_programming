@@ -1,19 +1,67 @@
->>> text_indentation(12)
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+# Test with a simple sentence
+>>> text_indentation("Hello world.")
+Hello world.
+<BLANKLINE>
+<BLANKLINE>
+
+# Test with sentences containing ., ?, and :
+>>> text_indentation("Hello? Is it me you're looking for. Yes: it is.")
+Hello?
+<BLANKLINE>
+<BLANKLINE>
+Is it me you're looking for.
+<BLANKLINE>
+<BLANKLINE>
+Yes:
+<BLANKLINE>
+<BLANKLINE>
+it is.
+<BLANKLINE>
+<BLANKLINE>
+
+# Test with no punctuation
+>>> text_indentation("Hello world")
+Hello world
+
+# Test with consecutive punctuation marks
+>>> text_indentation("Hello?? Is it me you're looking for... Yes:: it is.")
+Hello?
+<BLANKLINE>
+<BLANKLINE>
+?
+ Is it me you're looking for.
+<BLANKLINE>
+<BLANKLINE>
+.
+<BLANKLINE>
+<BLANKLINE>
+.
+<BLANKLINE>
+<BLANKLINE>
+ Yes:
+<BLANKLINE>
+<BLANKLINE>
+:
+ it is.
+<BLANKLINE>
+<BLANKLINE>
+
+# Test with leading and trailing spaces
+>>> text_indentation("  Hello world.  ")
+Hello world.
+<BLANKLINE>
+<BLANKLINE>
+
+# Test with None input, should raise a TypeError
+>>> text_indentation(None)
 Traceback (most recent call last):
 ...
 TypeError: text must be a string
->>> text_indentation("Lorem ipsum. Dolor sit amet? Consectetur: adipiscing!")
-Lorem ipsum.$
-$
-Dolor sit amet?$
-$
-Consectetur:$
-$
-adipiscing!
->>> text_indentation("Lorem ipsum dolor sit amet. consectetur: adipiscing elit?")
-Lorem ipsum dolor sit amet.$
-$
-consectetur:$
-$
-adipiscing elit?$
-$
+
+# Test with numeric input, should raise a TypeError
+>>> text_indentation(123)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
