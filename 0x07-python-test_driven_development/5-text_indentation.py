@@ -10,26 +10,10 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    # Initialize an index and a flag to indicate if a punctuation mark was found
-    i = 0
-    punct = False
+    text = text.replace('.', '.\n\n').replace('?', '?\n\n').replace(':', ':\n\n')
 
-    while i < len(text):
-        # Print the character
-        print(text[i], end="")
-        
-        if text[i] == '.' or text[i] == '?' or text[i] == ':':
-            punct = True
-        elif punct and text[i] == ' ':
-            # Skip printing the space after a punctuation
-            pass
-        else:
-            punct = False
-        
-        # If a punctuation mark was found and the current character is not a space,
-        # print two new lines
-        if punct and text[i] != ' ':
-            print("\n")
-            punct = False
-        
-        i += 1
+    lines = text.split('\n')
+    for line in lines:
+        print(line.strip(), end="")
+        if line is not lines[-1]:
+            print()
