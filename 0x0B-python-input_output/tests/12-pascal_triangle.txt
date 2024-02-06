@@ -1,3 +1,28 @@
->>> pascal_triangle = __import__('12-pascal_triangle').pascal_triangle
->>> print(pascal_triangle(5))
-[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+#!/usr/bin/python3
+"""
+Module: Tests for pascal_triangle function
+"""
+
+import unittest
+from parameterized import parameterized
+from pascal_triangle import pascal_triangle
+
+class TestPascalTriangle(unittest.TestCase):
+    """
+    Test cases for pascal_triangle function
+    """
+
+    @parameterized.expand([
+        (0, []),
+        (1, [[1]]),
+        (2, [[1], [1, 1]]),
+        (5, [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]])
+    ])
+    def test_pascal_triangle(self, n, expected_result):
+        """
+        Test pascal_triangle function with different inputs
+        """
+        self.assertEqual(pascal_triangle(n), expected_result)
+
+if __name__ == "__main__":
+    unittest.main()
