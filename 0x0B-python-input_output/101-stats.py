@@ -1,37 +1,48 @@
 #!/usr/bin/python3
 import sys
 
-status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
-file_size = 0
-line_count = 0
+def print_stats(total_size, status_codes):
+    """
+    Print statistics
+    """
+    print("File size: {}".format(total_size))
+    for code in sorted(status_codes.keys()):
+        if status_codes[code] > 0:
+            print("{}: {}".format(code, status_codes[code]))
 
-def print_stats():
-    """Print accumulated statistics"""
-    print("File size: {}".format(file_size))
-    for status, count in sorted(status_codes.items()):
-        if count:
-            print("{}: {}".format(status, count))
+def parse_line(line):
+    """
+    Parse log line
+    """
+    parts = line.split()
+    if len(parts) > 2:
+        status_code = parts[-2]
+        file_size = parts[-1]
+        return (int(status_code), int(file_size))
+    return None
 
-try:
-    for line in sys.stdin:
-        data = line.split()
-        line_count += 1
+def main():
+    """
+    Main function
+    """
+    total_size = 0
+    status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+    line_count = 0
 
-        try:
-            size = int(data[-1])
-            status = int(data[-2])
-            file_size += size
+    try:
+        for line in sys.stdin:
+            line_count += 1
+            log_data = parse_line(line)
+            if log_data:
+                status_code, file_size = log_data
+                total_size += file_size
+                if status_code in status_codes:
+                    status_codes[status_code] += 1
+            if line_count % 10 == 0:
+                print_stats(total_size, status_codes)
+    except KeyboardInterrupt:
+        print_stats(total_size, status_codes)
+        raise
 
-            if status in status_codes:
-                status_codes[status] += 1
-
-        except (ValueError, IndexError):
-            pass
-
-        if line_count % 10 == 0:
-            print_stats()
-
-except KeyboardInterrupt:
-    print_stats()
-    raise
-print_stats()
+if __name__ == "__main__":
+    main()
