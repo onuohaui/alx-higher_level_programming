@@ -1,5 +1,17 @@
 #!/usr/bin/python3
-def write_file(filename="", text=""):
-    """Writes a string to a text file (UTF-8) and returns the number of characters written"""
-    with open(filename, 'w', encoding="utf-8") as f:
-        return f.write(text)
+"""
+Module: 0-read_file
+Contains function: read_file
+"""
+
+def read_file(filename=""):
+    """
+    Reads a text file (UTF8) and prints it to stdout
+    Args:
+        filename (str): Name of the file to be read
+    """
+    with open(filename, encoding='utf-8') as file:
+        print(file.read(), end='')
+
+if __name__ == "__main__":
+    read_file("my_file_0.txt")
