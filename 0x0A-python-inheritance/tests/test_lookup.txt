@@ -1,0 +1,8 @@
+>>> lookup = __import__('0-lookup').lookup
+>>> class MyObject:
+...     def my_method(self):
+...         pass
+...
+>>> obj = MyObject()
+>>> 'my_method' in lookup(obj)
+True
